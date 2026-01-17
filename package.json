@@ -1,0 +1,8 @@
+{
+	"name": "mmm-seoulsubway",
+	"version": "1.0.0",
+	"description": "MagicMirror module for Seoul Subway realtime arrival",
+	"dependencies": {
+		"request": "^2.88.2"
+	}
+}
