@@ -5,7 +5,7 @@
   config: {
     apiKey: "YOUR_API_KEY",
     station: "산성",
-    updateInterval: 30000,
+    updateInterval: 100000,
     maxTrainsPerDirection: 2
   }
 }
