@@ -35,10 +35,27 @@ Module.register("MMM-SeoulSubway", {
 
 		const grouped = { 상행: [], 하행: [] }
 
+		const hasTrain = row => {
+			const arvlCd =
+				row.getElementsByTagName("arvlCd")[0]?.textContent ?? "0"
+			if (arvlCd !== "0") return true
+
+			const msg =
+				row.getElementsByTagName("arvlMsg2")[0]?.textContent ?? ""
+			return (
+				msg.includes("진입") ||
+				msg.includes("도착") ||
+				msg.includes("전역") ||
+				msg.includes("번째")
+			)
+		}
+
 		rows.forEach(row => {
 			const direction =
 				row.getElementsByTagName("updnLine")[0]?.textContent
 			if (!grouped[direction]) return
+
+			if (!hasTrain(row)) return
 
 			const barvlDt =
 				parseInt(
@@ -65,6 +82,14 @@ Module.register("MMM-SeoulSubway", {
 				0,
 				this.config.maxTrainsPerDirection,
 			)
+
+			if (grouped[dir].length === 0) {
+				grouped[dir].push({
+					line: "",
+					arrivalMsg: "도착 정보 없음",
+					isLast: false,
+				})
+			}
 		})
 
 		return grouped
