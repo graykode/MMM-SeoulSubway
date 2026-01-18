@@ -97,7 +97,7 @@ Module.register("MMM-SeoulSubway", {
 
 	getDom() {
 		const wrapper = document.createElement("div")
-		wrapper.className = "small"
+		wrapper.className = "medium"
 
 		const title = document.createElement("div")
 		title.className = "bold"
